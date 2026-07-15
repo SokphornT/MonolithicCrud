@@ -28,3 +28,34 @@ jobs:
 
       - name: Lint YAML
         run: yamllint .github/workflows/ci-cd.yml
+  ##################################
+  # TEST
+  ##################################
+  test:
+    needs: lint
+
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:16
+
+        env:
+          POSTGRES_DB: Sokphorn_CRUD
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: st1998@1998@
+
+        ports:
+          - 5432:5432
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+          cache: maven
+
+      - name: Run Test
+        run: mvn test
