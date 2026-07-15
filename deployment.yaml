@@ -1,0 +1,36 @@
+# apiVersion: apps/v1
+# kind: Deployment
+
+# metadata:
+#   name: monolithiccrud
+
+# spec:
+#   replicas: 2
+
+#   selector:
+#     matchLabels:
+#       app: monolithiccrud
+
+#   template:
+#     metadata:
+#       labels:
+#         app: monolithiccrud
+
+#     spec:
+#       containers:
+#         - name: monolithiccrud
+#           image: registry.gitlab.com/<your-namespace>/<your-project>:latest
+#           imagePullPolicy: Always
+
+#           ports:
+#             - containerPort: 8080
+
+#           env:
+#             - name: SPRING_DATASOURCE_URL
+#               value: jdbc:postgresql://postgres-service:5432/Sokphorn_CRUD
+
+#             - name: SPRING_DATASOURCE_USERNAME
+#               value: postgres
+
+#             - name: SPRING_DATASOURCE_PASSWORD
+#               value: st1998@1998@

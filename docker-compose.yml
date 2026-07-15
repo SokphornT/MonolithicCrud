@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    environment:
+      POSTGRES_DB: Sokphorn_CRUD
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: st1998@1998@
+    ports:
+      - "5432:5432"
+
+
+  app:
+    image: monolithiccrud:v1
+    container_name: monolithiccrud
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - postgres
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/Sokphorn_CRUD
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: st1998@1998@
